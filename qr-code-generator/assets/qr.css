@@ -1,0 +1,36 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.title{
+    text-align: center;
+}
+
+.result{
+    padding: 1em;
+    /* border: 1px solid rgb(133, 133, 133); */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 300px;
+    min-height: 300px;
+}
+
+canvas{
+    border-radius: 10px;
+}
+
+.instructions{
+    font-size: 14px;
+    color: rgb(198, 198, 198);
+    background-color: rgba(0, 0, 0, 0.856);
+    padding: 1em;
+}

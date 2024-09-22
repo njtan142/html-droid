@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="./assets/qr.css" />
+    <script defer src="./assets/qr.js"></script>
+  </head>
+  <body>
+    <h1 class="title">QR Code Generator</h1>
+    <div class="result" id="result"></div>
+    <div class="controls">
+      <label for="text">Input</label>
+      <input type="text" id="text" placeholder="Enter text" />
+      <button id="generate">Generate</button>
+    </div>
+
+    <p class="instructions">
+      Instructions:
+      <br />
+      1. Enter the text you want to encode in the input field.
+      <br />
+      2. Click the "Generate" button to generate the QR code.
+      <br />
+      3. The generated QR code will be displayed in the canvas.
+      <br />
+      4. Right click on a canvas and click "Save Image As..." to save the image as svg.
+      <br />
+      5. You can also download the image as png or jpg.
+    </p>
+  </body>
+  <script defer type="module">
+    import { generate, sync_svg } from "./assets/dist/qurora.js";
+    const text = document.querySelector("#text");
+    const generateButton = document.querySelector("#generate");
+    const result = document.querySelector("#result");
+
+    generateButton.addEventListener("click", function () {
+      const text = document.querySelector("#text").value;
+      const qr_svg = sync_svg(text, "L").toString();
+      console.log(qr_svg.toString());
+
+      const svgBlob = new Blob([qr_svg], {
+        type: "image/svg+xml;charset=utf-8",
+      });
+      const url = URL.createObjectURL(svgBlob);
+
+      const img = new Image();
+      img.src = url;
+      result.innerHTML = img.outerHTML;
+
+      // Create downloadable links for PNG and JPG
+      const downloadLinkPng = document.createElement("a");
+      downloadLinkPng.href = url;
+      downloadLinkPng.download = "qrcode.png"; // PNG file name
+      downloadLinkPng.textContent = "Download as PNG(transparent)";
+      downloadLinkPng.style.display = "none"; // Hide the link initially
+
+      const downloadLinkJpg = document.createElement("a");
+      downloadLinkJpg.href = url;
+      downloadLinkJpg.download = "qrcode.jpg"; // JPG file name
+      downloadLinkJpg.textContent = "Download as JPG";
+      downloadLinkJpg.style.display = "none"; // Hide the link initially
+
+      // Convert SVG to PNG and JPG and trigger downloads on click
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d", { alpha: true });
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+
+        // Create PNG download link
+        canvas.toBlob((blob) => {
+          const pngUrl = URL.createObjectURL(blob);
+          downloadLinkPng.href = pngUrl; // Update PNG link
+          downloadLinkPng.style.display = "inline"; // Show the PNG link
+        }, "image/png");
+
+        var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imgData.data;
+        for (var i = 0; i < data.length; i += 4) {
+          if (data[i + 3] < 255) {
+            data[i] = 255;
+            data[i + 1] = 255;
+            data[i + 2] = 255;
+            data[i + 3] = 255;
+          }
+        }
+        ctx.putImageData(imgData, 0, 0);
+
+        // Create JPG download link
+        canvas.toBlob((blob) => {
+          const jpgUrl = URL.createObjectURL(blob);
+          downloadLinkJpg.href = jpgUrl; // Update JPG link
+          downloadLinkJpg.style.display = "inline"; // Show the JPG link
+        }, "image/jpeg");
+
+      };
+
+      result.innerHTML = ""; // Clear previous results
+      result.appendChild(img); // Add the image to the result
+      result.appendChild(downloadLinkPng); // Add the PNG download link
+      result.appendChild(downloadLinkJpg); // Add the JPG download link
+    });
+  </script>
+</html>
