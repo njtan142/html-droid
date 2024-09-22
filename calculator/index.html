@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebraic Calculator</title>
+    <link rel="stylesheet" href="./assets/styles.css">
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <script  defer src="./assets/mathquill/mathquill.min.js"></script>
+    <link  rel="stylesheet" href="./assets//mathquill/mathquill.css">
+    <script defer src="./assets//algebrite/algebrite.bundle-for-browser.js"></script>
+    
+    <script defer type="module" src="./assets/editor.js"></script>
+</head>
+<body>
+    <h1>Algebraic Calculator</h1>
+    <p class="input">Type math here: <span id="math-field"></span></p>
+    <p>=</p>
+    <div class="answer" id="answer">
+
+    </div>
+    <div class="actions">
+
+    </div>
+    <div class="guidelines">
+        <h2>Latex Guidelines</h2>
+        <p>Here are some basic LaTeX guidelines for algebra:</p>
+        <ul>
+            <li>To write fractions: <code>\frac{numerator}{denominator}</code> (e.g., <code>\frac{a}{b}</code>)</li>
+            <li>To write exponents: <code>base^{exponent}</code> (e.g., <code>x^{2}</code>)</li>
+            <li>To write subscripts: <code>symbol_{subscript}</code> (e.g., <code>a_{i}</code>)</li>
+            <li>To write square roots: <code>\sqrt{expression}</code> (e.g., <code>\sqrt{x+1}</code>)</li>
+            <li>To write summations: <code>\sum_{i=1}^{n} expression</code> (e.g., <code>\sum_{i=1}^{n} i</code>)</li>
+            <li>To write products: <code>\prod_{i=1}^{n} expression</code> (e.g., <code>\prod_{i=1}^{n} i</code>)</li>
+            <li>To write integrals: <code>\int_{lower}^{upper} expression \, dvariable</code> (e.g., <code>\int_{0}^{1} x^2 \, dx</code>)</li>
+            <li>To write greek letters: <code>\alpha, \beta, \gamma, \pi, \theta</code> (e.g., <code>\pi, \theta</code>)</li>
+        </ul>
+        
+    </div>
+</body>
+</html>

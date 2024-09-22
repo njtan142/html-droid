@@ -1,0 +1,33 @@
+start    : equation EOF
+
+equation : expr EQUAL expr
+
+expr     : operator
+
+group    : LBRACKET expr RBRACKET
+
+operator      : operator_term ((PLUS | MINUS) operator)?
+
+operator_term : operator_mod ( ((MULTIPLY | DIVIDE) operator_term) | number )?
+
+operator_mod  : operator_exp ( MODULUS operator_mod )?
+
+operator_exp  : subscript ( EXPONENT expr )?
+
+subscript       : number ( UNDERSCORE subscript )?
+
+number : NUMBER
+       | uni_operator
+       | variable
+       | keyword
+       | group
+
+variable : VARIABLE
+
+keyword : KEYWORD
+        | fraction
+        | function
+
+fraction : FRAC group group
+
+function : ( SIN | COS | TAN | LOG ... ) group

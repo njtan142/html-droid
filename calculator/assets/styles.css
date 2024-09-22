@@ -1,0 +1,51 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    justify-content: center;
+}
+
+.guidelines{
+    font-size: 14px;
+    color: rgb(198, 198, 198);
+    background-color: rgba(0, 0, 0, 0.856);
+    padding: 1em;
+    margin-top: 5em;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.input>span{
+    box-sizing: content-box;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.answer{
+    border: 0.8px solid black;
+    border-bottom: 1px solid red;
+    border-right: 1px solid red;
+    border-radius: 10px;
+    padding: 10px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.answer::before{
+    background-color: red;
+    content: '  ';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 10px;
+    height: 20px;
+    transform: rotate(45deg) scale(2);
+}
