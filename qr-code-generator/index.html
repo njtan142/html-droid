@@ -31,12 +31,12 @@
     </p>
   </body>
   <script defer type="module">
-    import { generate, sync_svg } from "./assets/dist/qurora.js";
     const text = document.querySelector("#text");
     const generateButton = document.querySelector("#generate");
     const result = document.querySelector("#result");
 
-    generateButton.addEventListener("click", function () {
+    generateButton.addEventListener("click", async function () {
+      const { generate, sync_svg } =  await import( "./assets/dist/qurora.js");
       const text = document.querySelector("#text").value;
       const qr_svg = sync_svg(text, "L").toString();
       console.log(qr_svg.toString());
