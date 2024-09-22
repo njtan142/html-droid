@@ -12,6 +12,7 @@
   border-radius: 10px;
   height: 70vh;  
   align-items: flex-start;
+  gap: 1em;
 }
 
 .directory a {
