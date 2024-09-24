@@ -29,8 +29,17 @@ var mathField = MQ.MathField(mathFieldSpan, {
   },
 });
 
+
 mathFieldSpan.addEventListener("keydown", (e) => {
-  consoleElement.innerHTML = e.key;
+  console.log(e, e.__proto__);
+  const eventData = {
+    key: e.key,
+    keyCode: e.keyCode,
+    charCode: e.charCode,
+    target: e.target,
+    // Add any other properties you're interested in
+  };
+  consoleElement.innerHTML = JSON.stringify(eventData, null, 2);
 });
 
 function evalFactorial(latex, pass = 0, max = 10) {
