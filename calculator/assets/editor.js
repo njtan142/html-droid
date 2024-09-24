@@ -29,6 +29,10 @@ var mathField = MQ.MathField(mathFieldSpan, {
   },
 });
 
+mathFieldSpan.addEventListener("keydown", (e) => {
+  consoleElement.innerHTML = e.key;
+});
+
 function evalFactorial(latex, pass = 0, max = 10) {
   if(latex.includes("!!")) {
     return evalFactorial(latex, pass + 1, max);
