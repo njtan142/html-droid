@@ -1,0 +1,3 @@
+[submodule "wordsearch"]
+	path = wordsearch
+	url = https://github.com/njtan142/wordsearch-js.git
