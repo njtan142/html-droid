@@ -5,89 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML Droid</title>
     <link rel="stylesheet" href="./assets/index.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              first: "moveVertical 30s ease infinite",
+              second: "moveInCircle 20s reverse infinite",
+              third: "moveInCircle 40s linear infinite",
+              fourth: "moveHorizontal 40s ease infinite",
+              fifth: "moveInCircle 20s ease infinite",
+            },
+            keyframes: {
+              moveHorizontal: {
+                "0%": {
+                  transform: "translateX(-50%) translateY(-10%)",
+                },
+                "50%": {
+                  transform: "translateX(50%) translateY(10%)",
+                },
+                "100%": {
+                  transform: "translateX(-50%) translateY(-10%)",
+                },
+              },
+              moveInCircle: {
+                "0%": {
+                  transform: "rotate(0deg)",
+                },
+                "50%": {
+                  transform: "rotate(180deg)",
+                },
+                "100%": {
+                  transform: "rotate(360deg)",
+                },
+              },
+              moveVertical: {
+                "0%": {
+                  transform: "translateY(-50%)",
+                },
+                "50%": {
+                  transform: "translateY(50%)",
+                },
+                "100%": {
+                  transform: "translateY(-50%)",
+                },
+              },
+            },
+          },
+        },
+      };
+    </script>
   </head>
-  <body>
-    <h1 class="title">HTML Droid</h1>
-    <p class="description">
+  <body
+    class="w-full h-screen overflow-hidden dark:bg-black bg-white dark:bg-dot-white/[0.2] bg-dot-black/[0.2] text-slate-200 p-4"
+  >
+  <div class="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] w-screen h-screen"></div>
+    <h1
+      class="text-center text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pt-8 m-0"
+    >
+      HTML Droid
+    </h1>
+    <p
+      class="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto"
+    >
       An initiative to provide tools and games without the need to install
       anything.
     </p>
-    <div class="directory">
-      <a href="./qr-code-generator/index.html">
-        <div class="card">
-          <div class="image">
-            <img
-              src="https://store-images.s-microsoft.com/image/apps.54460.14466464113706381.a3914192-e7ad-4dc5-94bf-94b42c5a8d10.1a93d047-bc2c-4ffd-8df9-5e04f6ae3ae6"
-              alt=""
-            />
-          </div>
-          <div class="name">
-            <h2>QR Code Generator</h2>
-          </div>
-        </div>
-      </a>
-      <a href="./calculator/index.html">
-        <div class="card">
-          <div class="image">
-            <img
-              src="https://media.istockphoto.com/id/1392292723/vector/vector-doodle-illustration-school-calculator-isolated-on-white.jpg?s=612x612&w=0&k=20&c=2dqceaXd0QxfWLY22JSETfdq3GfIntJPSMW14FVmLdg="
-              alt=""
-            />
-          </div>
-          <div class="name">
-            <h2>Algebraic Calculator</h2>
+
+    <div class="directory opacity-80 h-4/6 overflow-scroll">
+      <a href="./qr-code-generator/index.html" class="max-w-xs w-full">
+        <div
+          class="group w-full cursor-pointer overflow-hidden relative h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end border border-transparent dark:border-neutral-800 bg-[url(https://th.bing.com/th/id/OIG1.lfhdAlGXau6ibnqt9K2V?w=270&h=270&c=6&r=0&o=5&pid=ImgGn)]"
+        >
+          <div class="text relative z-50 bg-slate-900 w-full p-2  ">
+            <h1 class="font-bold text-xl md:text-3xl text-slate-200 relative">
+              QR Generator
+            </h1>
+            <p class="font-normal text-sm text-slate-200 relative mt-4">
+              Generate QR Codes with ease and fully free!. Supports QR V1 to V40
+              and EC Level L, M, Q, H. Downloadable in PNG and JPG formats
+            </p>
           </div>
         </div>
       </a>
-      <a href="./converter/index.html">
-        <div class="card">
-          <div class="image">
-            <img
-              src="https://play-lh.googleusercontent.com/R46vqH8qKkBTxEcTZJ3WzAfVaeG7xXHdKBCi6jnhoFadggWy8NoA3GfxnrSkpUYCxjE=w240-h480-rw"
-              alt=""
-            />
-          </div>
-          <div class="name">
-            <h2>Converter</h2>
-          </div>
-        </div>
-      </a>
-      <a href="./currency/index.html">
-        <div class="card">
-          <div class="image">
-            <img
-              src="https://play-lh.googleusercontent.com/TuVhvDxhIz4sKtfAfUv5mh2RuTkd1Xa8hEQXlFGS95QNs9dVHt1_bFG6HP4qOCZY5W8=w240-h480-rw"
-              alt=""
-            />
-          </div>
-          <div class="name">
-            <h2>Currency Converter</h2>
+      <a href="./calculator/index.html" class="max-w-xs w-full">
+        <div
+          class="group w-full cursor-pointer overflow-hidden relative h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end border border-transparent dark:border-neutral-800 bg-[url(https://th.bing.com/th/id/OIG2.Dfq38I759Qi4Jw6p9R6p?w=1024&h=1024&rs=1&pid=ImgDetMain)] bg-center bg-no-repeat bg-cover"
+        >
+          <div class="text relative z-50 bg-slate-900 w-full p-2 opacity-90">
+            <h1 class="font-bold text-xl md:text-3xl text-slate-200 relative">
+              Algebraic Calculator
+            </h1>
+            <p class="font-normal text-sm text-slate-200 relative mt-4">
+             Solve a huge range of algebraic equations powered by algebrite. Supports LaTeX formatting. 
+            </p>
           </div>
         </div>
       </a>
-      <a href="./wordsearch/index.html">
-        <div class="card">
-          <div class="image">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQddwhMrP-JH3zojeGHW1_HvjJ2iFVP_Ky-uA&s"
-              alt=""
-            />
-          </div>
-          <div class="name">
-            <h2>Word Search</h2>
+      <a href="./converter/index.html" class="max-w-xs w-full">
+        <div
+          class="group w-full cursor-pointer overflow-hidden relative h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end border border-transparent dark:border-neutral-800 bg-[url(https://th.bing.com/th/id/OIG3.ManVKEdkzFEQ3PwdXP6.?w=1024&h=1024&rs=1&pid=ImgDetMain)] bg-center bg-no-repeat bg-cover"
+        >
+          <div class="text relative z-50 bg-slate-900 w-full p-2 opacity-90">
+            <h1 class="font-bold text-xl md:text-3xl text-slate-200 relative">
+              UniConvert
+            </h1>
+            <p class="font-normal text-sm text-slate-200 relative mt-4">
+              Convert between different units of measurement. Also supports conversion between different unit systems.
+            </p>
           </div>
         </div>
       </a>
-      <a href="./globe/index.html">
-        <div class="card">
-          <div class="image">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/6213/6213305.png"
-              alt=""
-            />
+      <a href="./currency/index.htmll" class="max-w-xs w-full">
+        <div
+          class="group w-full cursor-pointer overflow-hidden relative h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end border border-transparent dark:border-neutral-800 bg-[url(https://th.bing.com/th/id/OIG3.3IJF1T9EUuv5.ojiiHSp?pid=ImgGn)] bg-center bg-no-repeat bg-cover"
+        >
+          <div class="text relative z-50 bg-slate-900 w-full p-2 opacity-90">
+            <h1 class="font-bold text-xl md:text-3xl text-slate-200 relative">
+              Currency Converter
+            </h1>
+            <p class="font-normal text-sm text-slate-200 relative mt-4">
+             Get the latest exchange rates for currencies. Currency conversion rates for 161 currencies used in 200 countries.
+            </p>
           </div>
-          <div class="name">
-            <h2>World Map</h2>
+        </div>
+      </a>
+      <a href="./wordsearch/index.html" class="max-w-xs w-full">
+        <div
+          class="group w-full cursor-pointer overflow-hidden relative h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end border border-transparent dark:border-neutral-800 bg-[url(https://th.bing.com/th/id/OIG2.1UmiBsNzzUBsdfe25No1?w=1024&h=1024&rs=1&pid=ImgDetMain)] bg-center bg-no-repeat bg-cover"
+        >
+          <div class="text relative z-50 bg-slate-900 w-full p-2 opacity-90">
+            <h1 class="font-bold text-xl md:text-3xl text-slate-200 relative">
+              Word Search
+            </h1>
+            <p class="font-normal text-sm text-slate-200 relative mt-4">
+             Level up your puzzle skills with this fun word search game. Find the words that match the given pattern.
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="./globe/index.html" class="max-w-xs w-full">
+        <div
+          class="group w-full cursor-pointer overflow-hidden relative h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end border border-transparent dark:border-neutral-800 bg-[url(https://th.bing.com/th/id/OIG2.Ta5u.3XaKb0BiPLpKKN8?pid=ImgGn)] bg-center bg-no-repeat bg-cover"
+        >
+          <div class="text relative z-50 bg-slate-900 w-full p-2 opacity-90">
+            <h1 class="font-bold text-xl md:text-3xl text-slate-200 relative">
+              World Map
+            </h1>
+            <p class="font-normal text-sm text-slate-200 relative mt-4">
+              Take a virtual tour of the world and explore different countries. Discover the cultures, landmarks, and attractions of each country.
+            </p>
           </div>
         </div>
       </a>
