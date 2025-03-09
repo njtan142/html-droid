@@ -1,43 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Algebraic Calculator</title>
-    <link rel="stylesheet" href="./assets/styles.css">
-    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-    <script  defer src="./assets/mathquill/mathquill.min.js"></script>
-    <link  rel="stylesheet" href="./assets//mathquill/mathquill.css">
-    <script defer src="./assets//algebrite/algebrite.bundle-for-browser.js"></script>
-    
+    <script defer src="./assets/mathquill/mathquill.min.js"></script>
+    <link rel="stylesheet" href="./assets//mathquill/mathquill.css" />
+    <script
+      defer
+      src="./assets//algebrite/algebrite.bundle-for-browser.js"
+    ></script>
+
     <script defer type="module" src="./assets/editor.js"></script>
-</head>
-<body>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              shimmer: "shimmer 4s linear infinite",
+            },
+            keyframes: {
+              shimmer: {
+                from: {
+                  backgroundPosition: "0 0",
+                },
+                to: {
+                  backgroundPosition: "-200% 0",
+                },
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="w-full min-h-screen dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] text-slate-200 pb-10 flex flex-col items-center justify-center"
+  >
+  <div
+      class="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,#000000BE)] w-screen h-screen"
+    ></div>
     <h1>Algebraic Calculator</h1>
-    <p class="input">Type math here: <span id="math-field"></span></p>
+    <p class="input p-10 inline-flex animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 flex-col">Type math here: <span id="math-field"></span></p>
     <p>=</p>
-    <div class="answer" id="answer">
+    <div class="answer p-10 inline-flex animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 flex-col" id="answer"></div>
+    <div class="actions"></div>
+    <div class="guidelines p-10 inline-flex animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 flex-col">
+      <h2>Latex Guidelines</h2>
+      <p>Here are some basic LaTeX guidelines for algebra:</p>
+      <ul>
+        <li>
+          To write fractions: <code>\frac{numerator}{denominator}</code> (e.g.,
+          <code>\frac{a}{b}</code>)
+        </li>
+        <li>
+          To write exponents: <code>base^{exponent}</code> (e.g.,
+          <code>x^{2}</code>)
+        </li>
+        <li>
+          To write subscripts: <code>symbol_{subscript}</code> (e.g.,
+          <code>a_{i}</code>)
+        </li>
+        <li>
+          To write square roots: <code>\sqrt{expression}</code> (e.g.,
+          <code>\sqrt{x+1}</code>)
+        </li>
+        <li>
+          To write summations: <code>\sum_{i=1}^{n} expression</code> (e.g.,
+          <code>\sum_{i=1}^{n} i</code>)
+        </li>
+        <li>
+          To write products: <code>\prod_{i=1}^{n} expression</code> (e.g.,
+          <code>\prod_{i=1}^{n} i</code>)
+        </li>
+        <li>
+          To write integrals:
+          <code>\int_{lower}^{upper} expression \, dvariable</code> (e.g.,
+          <code>\int_{0}^{1} x^2 \, dx</code>)
+        </li>
+        <li>
+          To write greek letters:
+          <code>\alpha, \beta, \gamma, \pi, \theta</code> (e.g.,
+          <code>\pi, \theta</code>)
+        </li>
+      </ul>
+    </div>
 
-    </div>
-    <div class="actions">
-
-    </div>
-    <div class="guidelines">
-        <h2>Latex Guidelines</h2>
-        <p>Here are some basic LaTeX guidelines for algebra:</p>
-        <ul>
-            <li>To write fractions: <code>\frac{numerator}{denominator}</code> (e.g., <code>\frac{a}{b}</code>)</li>
-            <li>To write exponents: <code>base^{exponent}</code> (e.g., <code>x^{2}</code>)</li>
-            <li>To write subscripts: <code>symbol_{subscript}</code> (e.g., <code>a_{i}</code>)</li>
-            <li>To write square roots: <code>\sqrt{expression}</code> (e.g., <code>\sqrt{x+1}</code>)</li>
-            <li>To write summations: <code>\sum_{i=1}^{n} expression</code> (e.g., <code>\sum_{i=1}^{n} i</code>)</li>
-            <li>To write products: <code>\prod_{i=1}^{n} expression</code> (e.g., <code>\prod_{i=1}^{n} i</code>)</li>
-            <li>To write integrals: <code>\int_{lower}^{upper} expression \, dvariable</code> (e.g., <code>\int_{0}^{1} x^2 \, dx</code>)</li>
-            <li>To write greek letters: <code>\alpha, \beta, \gamma, \pi, \theta</code> (e.g., <code>\pi, \theta</code>)</li>
-        </ul>
-    </div>
-    
-    <div id="console"></div>
-</body>
+    <!-- <div id="console"></div> -->
+  </body>
 </html>

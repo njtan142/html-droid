@@ -2,7 +2,6 @@ import AlgebraLatex from "./parser/index.js";
 
 var mathFieldSpan = document.getElementById("math-field");
 var answerElement = document.getElementById("answer");
-var consoleElement = document.getElementById("console");
 
 var expression = new AlgebraLatex();
 
@@ -23,7 +22,7 @@ var mathField = MQ.MathField(mathFieldSpan, {
         MQ.StaticMath(answerElement);
       } catch (error) {
         console.log(error);
-        consoleElement.innerHTML = error.toString();
+        // consoleElement.innerHTML = error.toString();
       }
     },
   },
@@ -39,7 +38,7 @@ mathFieldSpan.addEventListener("keydown", (e) => {
     target: e.target,
     // Add any other properties you're interested in
   };
-  consoleElement.innerHTML = JSON.stringify(eventData, null, 2);
+  // consoleElement.innerHTML = JSON.stringify(eventData, null, 2);
 });
 
 function evalFactorial(latex, pass = 0, max = 10) {

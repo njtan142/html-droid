@@ -1,0 +1,25 @@
+body{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+#globe{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+
+}
+
+h2{
+    text-align: center;
+    margin-top: 1.5em;
+    font-size: 3em;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

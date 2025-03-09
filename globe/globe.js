@@ -2,10 +2,10 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 const visitedCountries = ["Philippines"];
 const plannedCountries = ["Japan", "Canada", "Australia", "Netherlands"];
+const countryNameElement = document.getElementById("country-name");
 
 async function loadData() {
   const response = await fetch("./world.json");
-  console.log(response)
   const data = await response.json();
   return data;
 }
@@ -13,14 +13,14 @@ async function loadData() {
 onload = async () => {
   const mapContainer = document.getElementById("globe");
   const width = mapContainer.clientWidth;
-  const height = 500;
+  const height = 800;
   const sensitivity = 75;
 
   const worldData = await loadData();
 
   let projection = d3
     .geoOrthographic()
-    .scale(250)
+    .scale(350)
     .center([0, 0])
     .rotate([0, -30])
     .translate([width / 2, height / 2]);
@@ -52,16 +52,35 @@ onload = async () => {
     .enter()
     .append("path")
     .attr("d", (d) => pathGenerator(d))
+    .attr("id",(d) => d.properties.name)
     .attr("fill", (d) =>
-      visitedCountries.includes(d.properties.name)
-        ? "#E63946"
-        : plannedCountries.includes(d.properties.name)
-        ? "#34883a"
-        : "white"
+      // visitedCountries.includes(d.properties.name)
+      //   ? "#E63946"
+      //   : plannedCountries.includes(d.properties.name)
+      //   ? "#34883a"
+        // : 
+        "white"
     )
     .style("stroke", "black")
     .style("stroke-width", 0.3)
-    .style("opacity", 0.8);
+    .style("opacity", 0.8)
+    .style("cursor", "pointer")
+    .style("transition", "fill 0.2s ease-in-out")
+    .on("click", (event, d) => {
+      const countryName = d.properties.name;
+      const url = `https://en.wikipedia.org/wiki/${encodeURIComponent(countryName)}`;
+      window.open(url, "_blank"); // Opens the URL in a new tab
+    })
+    .on("mouseover", (event, d) => {
+      const countryName = d.properties.name;
+      countryNameElement.textContent = countryName;
+      event.target.style.fill = "#34883a";
+    })
+    .on("mouseout", (event, d) => {
+      event.target.style.fill = "white";
+    })
+    ;
+
 
   const drag = d3.drag().on("drag", (event) => {
     const rotate = projection.rotate();
@@ -70,12 +89,16 @@ onload = async () => {
     svg.selectAll("path").attr("d", (d) => pathGenerator(d));
   });
 
+
   svg.call(drag);
 
   d3.timer(() => {
     const rotate = projection.rotate();
     const k = sensitivity / projection.scale();
-    projection.rotate([rotate[0] - 1 * k, rotate[1]]);
+    // projection.rotate([rotate[0] - 1 * k, rotate[1]]);
     svg.selectAll("path").attr("d", (d) => pathGenerator(d));
   }, 200);
+
+ 
+
 };
